@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect } from "react";
 // reactstrap components
 import { Card, Container, Row } from "reactstrap";
 import useMap from "../hooks/useMap";
@@ -35,6 +35,22 @@ const MapWrapper = () => {
 			position: newLatLang,
 			animation: google.maps.Animation.DROP,
 		});
+		//create a content string that shows up on click of the marker
+		const contentString =
+			'<div class="info-window-content"><h2>Azimio:  ' +
+			marker.azimioLaUmoja +
+			"</h2>" +
+			"<h2>Kenya Kwanza: " +
+			marker.kenyaKwanza +
+			"</h2>" +
+			"";
+		const infowindow = new google.maps.InfoWindow({
+			content: contentString,
+		});
+		//add an event listener to display the info window on click events
+		google.maps.event.addListener(newMarker, "click", function () {
+			infowindow.open(map, newMarker);
+		});
 		newMarker.setMap(map);
 		return newMarker;
 	};
@@ -59,7 +75,7 @@ const MapWrapper = () => {
 	});
 
 	socket.on("NewVote", (newVote) => {
-		setMarker(newVote)
+		setMarker(newVote);
 	});
 
 	return (

@@ -56,22 +56,8 @@ const useMap = () => {
 			});
 	};
 
-	const genMarker = (marker) => {
-		let stringCoordsArray = marker.location.coordinates.map((str) =>
-			str.toString()
-		);
-		//create a new latitude and longitude object with the array above
-		const newLatLang =
-			stringCoordsArray?.length &&
-			new google.maps.LatLng(stringCoordsArray[1], stringCoordsArray[0]);
-		//create a new marker with the coordinate object above
-		const newMarker = new google.maps.Marker({
-			position: newLatLang,
-			// animation: google.maps.Animation.DROP,
-		});
-		return newMarker;
-	};
-	return { getVotes, votes, genMarkers,genMarker };
+
+	return { getVotes, genMarkers, votes };
 };
 
 export default useMap;
