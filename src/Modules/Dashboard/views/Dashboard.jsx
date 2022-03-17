@@ -1,8 +1,8 @@
 import React from "react";
-import { useLocation, Route, Switch, Redirect } from "react-router-dom";
+import { useLocation, Route} from "react-router-dom";
 import Sidebar from "Common/components/Sidebar/Sidebar.js";
-
 import routes from "routes.js";
+import Maps from "../components/Map";
 
 const Admin = (props) => {
 	const mainContent = React.useRef(null);
@@ -30,8 +30,6 @@ const Admin = (props) => {
 		});
 	};
 
-
-
 	return (
 		<>
 			<Sidebar
@@ -44,10 +42,7 @@ const Admin = (props) => {
 				}}
 			/>
 			<div className="main-content pb-8" ref={mainContent}>
-				<Switch>
-					{getRoutes(routes)}
-					<Redirect from="*" to="/admin/maps" />
-				</Switch>
+				<Maps />
 			</div>
 		</>
 	);

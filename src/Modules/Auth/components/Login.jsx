@@ -1,4 +1,3 @@
-import { user } from "Common/recoil/user";
 import {
 	Button,
 	Card,
@@ -13,13 +12,10 @@ import {
 	Col,
 	Spinner,
 } from "reactstrap";
-import { useRecoilValue } from "recoil";
 import useLogin from "../hooks/useLogin";
 
 const Login = () => {
 	const { email, password, handleChange, load, login, formError } = useLogin();
-	let tkn = useRecoilValue(user);
-	console.log(tkn);
 	return (
 		<>
 			<Col lg="5" md="7">
